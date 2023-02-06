@@ -1,13 +1,20 @@
-const fastify = require("fastify")({ logger: true });
-
-fastify.get("/api/ping", (request, reply) => {
-  reply.send({ hello: "Sagar Sir" });
+// Importing fastify
+const fastify = require("fastify")({
+  logger: true,
 });
 
-fastify.get("/api/1", (request, reply) => {
-  reply.send({ hello: "Arishem" });
+fastify.log.info("📋 Mounting Dependencies 📋");
+fastify.register(require("./dbConnector"));
+fastify.register(require("./routes"));
+
+fastify.log.info("🧪 Setting up ping route at /api/v1/ping 🧪");
+fastify.get("/api/v1/ping", (request, reply) => {
+  reply.send({
+    ping: "PONG,",
+  });
 });
 
+fastify.log.info("🚀🚀 Launching server !! 🚀🚀");
 fastify.listen({ port: 3000 }, (err) => {
   if (err) {
     fastify.log.error(err);
