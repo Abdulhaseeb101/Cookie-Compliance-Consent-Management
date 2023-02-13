@@ -8,6 +8,8 @@ const createConsent = async (request, reply) => {
       reply.send({
         error: err,
       });
+    } else {
+      reply.send({ status: "creation success" });
     }
   });
 };
@@ -18,6 +20,16 @@ const getConsent = (request, reply) => {
   Consent.findById(id, (err, consent) => {
     if (!err) {
       reply.send(consent);
+    } else {
+      reply.send({ error: err });
+    }
+  });
+};
+
+const getAllConsent = (request, reply) => {
+  Consent.find({}, (err, consents) => {
+    if (!err) {
+      reply.send(consents);
     } else {
       reply.send({ error: err });
     }
@@ -38,6 +50,8 @@ const updateConsent = (request, reply) => {
       consent.save((er, _) => {
         if (er) {
           reply.send(er);
+        } else {
+          reply.send({ status: "updation success" });
         }
       });
     } else {
@@ -53,7 +67,7 @@ const deleteConsent = (request, reply) => {
     if (!err) {
       consent.remove((er) => {
         if (!er) {
-          reply.send({ consentDeletion: "success" });
+          reply.send({ consentDeletion: "deletion success" });
         } else {
           reply.send({ error: er });
         }
@@ -64,4 +78,10 @@ const deleteConsent = (request, reply) => {
   });
 };
 
-module.exports = { createConsent, getConsent, updateConsent, deleteConsent };
+module.exports = {
+  createConsent,
+  getConsent,
+  updateConsent,
+  deleteConsent,
+  getAllConsent,
+};
