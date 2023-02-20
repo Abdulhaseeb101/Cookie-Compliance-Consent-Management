@@ -4,6 +4,7 @@ const fastify = require("fastify")({
 });
 
 fastify.log.info("📋 Mounting Dependencies 📋");
+fastify.register(require("@fastify/cors"));
 fastify.register(require("./dbConnector"));
 fastify.register(require("./routes"));
 

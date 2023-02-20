@@ -1,9 +1,9 @@
 const cookieContainer = document.querySelector(".cookie-container");
 const cookieButton = document.querySelector(".cookie-btn");
 
-cookieButton.addEventListener("click", () => {
+cookieButton.addEventListener("click", async () => {
   let cookieExpDate = new Date();
-  cookieExpDate.setSeconds(cookieExpDate.getSeconds() + 10);
+  cookieExpDate.setSeconds(cookieExpDate.getSeconds() + 10); // Setting expiry date
 
   let cookieConsentString =
     "cookieConsentBannerShown=true; SameSite=Lax; expires=" +
@@ -16,6 +16,29 @@ cookieButton.addEventListener("click", () => {
   } else {
     console.log("Geolocation feature unavailable");
   }
+
+  let timestamp = Math.floor(new Date().getTime() / 1000);
+  let ip = await fetch("https://api.ipify.org", {
+    method: "GET",
+  });
+  let loc = await navigator.geolocation.getCurrentPosition(
+    logPosition,
+    showErr
+  );
+
+  fetch("http://127.0.0.1:3000/api/v1/createcon", {
+    method: "POST",
+    body: JSON.stringify({
+      timestamp: timestamp,
+      ipaddr: ip,
+      geoloc: loc,
+      consentval: "accept",
+    }),
+    // headers: {
+    //   "Access-": "application/json",
+    //   // 'Content-Type': 'application/x-www-form-urlencoded',
+    // },
+  });
 
   cookieContainer.classList.remove("active");
 });

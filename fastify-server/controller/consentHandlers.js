@@ -41,7 +41,9 @@ const updateConsent = (request, reply) => {
   var newConsentEdit = request.body;
 
   Consent.findById(id, (err, consent) => {
-    if (!err) {
+    if (err) {
+      reply.status(500).send({ error: err });
+    } else {
       consent.timestamp = newConsentEdit.timestamp;
       consent.ipaddr = newConsentEdit.ipaddr;
       consent.geoloc = newConsentEdit.geoloc;
@@ -49,13 +51,12 @@ const updateConsent = (request, reply) => {
 
       consent.save((er, _) => {
         if (er) {
-          reply.send(er);
+          reply.status(500).send(er);
         } else {
           reply.send({ status: "updation success" });
         }
+        cd;
       });
-    } else {
-      reply.send({ error: err });
     }
   });
 };
