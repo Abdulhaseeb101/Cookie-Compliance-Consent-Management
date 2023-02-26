@@ -1,23 +1,21 @@
-import 'package:cookie_proj_ui/Consent.dart';
-import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:cookie_proj_ui/models/Consent.dart';
+import 'package:dio/dio.dart';
 
 class ConsentRepository {
-  String DB_URL = "127.0.0.1/api/v1/";
 
-  Future<List<Consent>> listAllConsents() async {
-    var reqURL = DB_URL + "getall";
+  final Dio _dio = Dio(BaseOptions(baseUrl: "http://192.16.43.22:3000/api/v1/"));
 
-    var respBody = await http.get(Uri.parse(reqURL));
+  Future<List<Consent>> getAllConsents() async {
+    List<Consent> allConsents = [];
 
-    respBody.body
+    Response resp = await _dio.get("/getall");
+
+    for(var consent in resp.data) {
+      allConsents.add(Consent.fromJson(consent));
+    }
+
+    return allConsents;
   }
-}
-
-void main() {
-  var url = 'https://jsonplaceholder.typicode.com/todos/1';
-
-  http.get(Uri.parse(url)).then((response) {
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-  });
 }

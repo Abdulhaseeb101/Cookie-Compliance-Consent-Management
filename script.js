@@ -11,20 +11,11 @@ cookieButton.addEventListener("click", async () => {
 
   document.cookie = cookieConsentString;
 
-  if (navigator.geolocation) {
-    console.log(navigator.geolocation.getCurrentPosition(logPosition, showErr));
-  } else {
-    console.log("Geolocation feature unavailable");
-  }
-
   let timestamp = Math.floor(new Date().getTime() / 1000);
-  let ip = await fetch("https://api.ipify.org", {
-    method: "GET",
-  });
-  let loc = await navigator.geolocation.getCurrentPosition(
-    logPosition,
-    showErr
-  );
+  let ip = await getIP();
+  let loc = await getLoc(ip);
+
+  setTimeout(() => {}, 8000);
 
   fetch("http://127.0.0.1:3000/api/v1/createcon", {
     method: "POST",
@@ -34,32 +25,36 @@ cookieButton.addEventListener("click", async () => {
       geoloc: loc,
       consentval: "accept",
     }),
-    // headers: {
-    //   "Access-": "application/json",
-    //   // 'Content-Type': 'application/x-www-form-urlencoded',
-    // },
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   cookieContainer.classList.remove("active");
 });
 
-function showErr() {
-  console.log("Permission Denied");
+async function getIP() {
+  const resp = await fetch("https://api.ipify.org?format=text", {
+    method: "GET",
+  });
+  const ip = resp.text();
+
+  return ip;
 }
 
-function logPosition(pos) {
-  console.log(
-    "Latitude: " +
-      pos.coords.latitude +
-      " " +
-      "Longitude: " +
-      pos.coords.longitude
-  );
+async function getLoc(ip) {
+  const resp = await fetch("http://ip-api.com/json/" + ip + "?fields=lat,lon", {
+    method: "GET",
+  });
+  const respJson = await resp.json();
+  const latLongStr = respJson.lat + " " + respJson.lon;
+
+  return latLongStr;
 }
 
 setTimeout(() => {
   let cookies = document.cookie.split();
-  console.log(cookies);
+
   if (cookies.indexOf("cookieConsentBannerShown=true") == -1) {
     cookieContainer.classList.add("active");
   }

@@ -1,6 +1,6 @@
 const Consent = require("../models/consent");
 
-const createConsent = async (request, reply) => {
+const createConsent = (request, reply) => {
   var _consent = request.body;
 
   Consent.create(_consent, (err, _) => {
