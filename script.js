@@ -1,36 +1,56 @@
 const cookieContainer = document.querySelector(".cookie-container");
 const cookieButton = document.querySelector(".cookie-btn");
+const perfToggle = document.getElementById("perfToggle");
+const adToggle = document.getElementById("adToggle");
 
 cookieButton.addEventListener("click", async () => {
-  let cookieExpDate = new Date();
-  cookieExpDate.setSeconds(cookieExpDate.getSeconds() + 10); // Setting expiry date
+  // Initialzing cookie preferences
+  let userConsentSetting = {
+    perfCookies: true,
+    adCookies: true,
+  };
 
-  let cookieConsentString =
-    "cookieConsentBannerShown=true; SameSite=Lax; expires=" +
-    cookieExpDate.toUTCString();
+  // Setting preferences
+  if (perfToggle.checked == false) {
+    userConsentSetting.perfCookies = false;
+  }
 
-  document.cookie = cookieConsentString;
+  if (adToggle.checked == false) {
+    userConsentSetting.adCookies = false;
+  }
 
+  // Getting the request body ready
   let timestamp = Math.floor(new Date().getTime() / 1000);
   let ip = await getIP();
   let loc = await getLoc(ip);
 
-  setTimeout(() => {}, 8000);
+  // Removing consent banner
+  cookieContainer.classList.remove("active");
 
-  fetch("http://127.0.0.1:3000/api/v1/createcon", {
+  // Performing the request
+  var resp = await fetch("http://127.0.0.1:3000/api/v1/createcon", {
     method: "POST",
     body: JSON.stringify({
       timestamp: timestamp,
       ipaddr: ip,
       geoloc: loc,
-      consentval: "accept",
+      consentval: userConsentSetting,
     }),
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  cookieContainer.classList.remove("active");
+  // Prepare local cookie body
+  const respJson = await resp.json();
+  let cookieExpDate = new Date();
+  cookieExpDate.setSeconds(cookieExpDate.getSeconds() + 10); // Setting expiry date
+
+  let cookieConsentString = `cookieConsentId=${
+    respJson.consentId
+  }; cookieConsentBannerShown=true; SameSite=Lax; expires=${cookieExpDate.toUTCString()}`;
+
+  document.cookie = cookieConsentString;
 });
 
 async function getIP() {

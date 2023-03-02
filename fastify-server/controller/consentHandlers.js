@@ -3,13 +3,16 @@ const Consent = require("../models/consent");
 const createConsent = (request, reply) => {
   var _consent = request.body;
 
-  Consent.create(_consent, (err, _) => {
+  Consent.create(_consent, (err, consent) => {
     if (err) {
       reply.send({
         error: err,
       });
     } else {
-      reply.send({ status: "creation success" });
+      reply.send({
+        status: "creation success",
+        consentId: consent.id,
+      });
     }
   });
 };
