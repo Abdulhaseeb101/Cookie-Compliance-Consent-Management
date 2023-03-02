@@ -15,4 +15,17 @@ class ConsentRepository {
 
     return allConsents;
   }
+
+  Future<Consent> fetchOneConsent(String consentId) async {
+    Response resp = await _dio.get("/getcon/$consentId");
+
+    var ref = resp.data;
+    Consent consent = Consent.fromJson(ref);
+
+    return consent;
+  }
+
+  void deleteConsent(String consentId) async {
+    await _dio.put("/deletecon/$consentId");
+  }
 }

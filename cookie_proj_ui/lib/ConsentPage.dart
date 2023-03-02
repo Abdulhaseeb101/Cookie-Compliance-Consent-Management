@@ -16,6 +16,7 @@ class _ConsentPageState extends State<ConsentPage> {
       appBar: AppBar(
         title: const Text("All Consents!!"),
         centerTitle: true,
+        backgroundColor: Colors.redAccent,
       ),
       body: Column(
         children: [
@@ -32,13 +33,16 @@ class _ConsentPageState extends State<ConsentPage> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     return ListTile(
+                      leading: const Icon(Icons.perm_identity),
                       title: Text(snapshot.data![index].id),
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ConsentInfoPage(
-                                    consentId: snapshot.data![index].id)));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ConsentInfoPage(
+                                    consentId: snapshot.data![index].id,
+                                  )),
+                        ).then((value) => setState(() {}));
                       },
                     );
                   },

@@ -1,0 +1,252 @@
+./
+├── controller
+├── models
+└── node_modules
+    ├── abort-controller
+    │   └── dist
+    ├── abstract-logging
+    ├── ajv
+    │   ├── dist
+    │   │   ├── compile
+    │   │   │   ├── codegen
+    │   │   │   ├── jtd
+    │   │   │   └── validate
+    │   │   ├── refs
+    │   │   │   ├── json-schema-2019-09
+    │   │   │   │   └── meta
+    │   │   │   └── json-schema-2020-12
+    │   │   │       └── meta
+    │   │   ├── runtime
+    │   │   ├── standalone
+    │   │   ├── types
+    │   │   └── vocabularies
+    │   │       ├── applicator
+    │   │       ├── core
+    │   │       ├── discriminator
+    │   │       ├── dynamic
+    │   │       ├── format
+    │   │       ├── jtd
+    │   │       ├── unevaluated
+    │   │       └── validation
+    │   └── lib
+    │       ├── compile
+    │       │   ├── codegen
+    │       │   ├── jtd
+    │       │   └── validate
+    │       ├── refs
+    │       │   ├── json-schema-2019-09
+    │       │   │   └── meta
+    │       │   └── json-schema-2020-12
+    │       │       └── meta
+    │       ├── runtime
+    │       ├── standalone
+    │       ├── types
+    │       └── vocabularies
+    │           ├── applicator
+    │           ├── core
+    │           ├── discriminator
+    │           ├── dynamic
+    │           ├── format
+    │           ├── jtd
+    │           ├── unevaluated
+    │           └── validation
+    ├── ajv-formats
+    │   ├── dist
+    │   └── src
+    ├── archy
+    │   ├── examples
+    │   └── test
+    ├── atomic-sleep
+    ├── avvio
+    │   ├── lib
+    │   └── test
+    │       ├── fixtures
+    │       └── types
+    ├── base64-js
+    ├── buffer
+    ├── cookie
+    ├── debug
+    │   └── src
+    ├── events
+    │   └── tests
+    ├── event-target-shim
+    │   └── dist
+    ├── fast-content-type-parse
+    │   ├── benchmarks
+    │   ├── docs
+    │   ├── examples
+    │   ├── test
+    │   └── types
+    ├── fast-decode-uri-component
+    ├── fast-deep-equal
+    │   └── es6
+    ├── @fastify
+    │   ├── ajv-compiler
+    │   │   ├── benchmark
+    │   │   ├── lib
+    │   │   ├── test
+    │   │   └── types
+    │   ├── deepmerge
+    │   │   └── types
+    │   ├── error
+    │   │   ├── test
+    │   │   └── types
+    │   └── fast-json-stringify-compiler
+    │       ├── test
+    │       └── types
+    ├── fastify
+    │   ├── build
+    │   ├── docs
+    │   │   ├── Guides
+    │   │   ├── Reference
+    │   │   └── resources
+    │   ├── examples
+    │   │   └── benchmark
+    │   ├── integration
+    │   ├── lib
+    │   ├── test
+    │   │   ├── build
+    │   │   ├── bundler
+    │   │   │   ├── esbuild
+    │   │   │   │   └── src
+    │   │   │   └── webpack
+    │   │   │       └── src
+    │   │   ├── esm
+    │   │   ├── http2
+    │   │   ├── https
+    │   │   ├── internals
+    │   │   └── types
+    │   └── types
+    ├── fast-json-stringify
+    │   ├── benchmark
+    │   ├── build
+    │   ├── examples
+    │   ├── lib
+    │   ├── test
+    │   │   ├── fixtures
+    │   │   └── json-schema-test-suite
+    │   │       ├── draft4
+    │   │       ├── draft6
+    │   │       └── draft7
+    │   └── types
+    ├── fastq
+    │   └── test
+    ├── fast-querystring
+    │   └── lib
+    │       └── internals
+    ├── fast-redact
+    │   ├── benchmark
+    │   ├── example
+    │   ├── lib
+    │   └── test
+    ├── fast-uri
+    │   ├── lib
+    │   ├── test
+    │   └── types
+    ├── find-my-way
+    │   ├── lib
+    │   │   └── strategies
+    │   └── test
+    │       ├── http2
+    │       └── types
+    ├── forwarded
+    ├── ieee754
+    ├── ipaddr.js
+    │   └── lib
+    ├── json-schema-traverse
+    │   └── spec
+    │       └── fixtures
+    ├── light-my-request
+    │   ├── build
+    │   ├── lib
+    │   ├── test
+    │   └── types
+    ├── lru-cache
+    ├── ms
+    ├── on-exit-leak-free
+    │   └── test
+    │       └── fixtures
+    ├── pino
+    │   ├── docs
+    │   ├── lib
+    │   └── test
+    │       ├── esm
+    │       ├── fixtures
+    │       │   ├── broken-pipe
+    │       │   ├── eval
+    │       │   │   └── node_modules
+    │       │   ├── pretty
+    │       │   ├── transport
+    │       │   └── ts
+    │       ├── internals
+    │       ├── jest
+    │       ├── transport
+    │       └── types
+    ├── pino-abstract-transport
+    │   └── test
+    │       └── types
+    ├── pino-std-serializers
+    │   ├── lib
+    │   └── test
+    │       └── types
+    ├── process
+    ├── process-warning
+    │   ├── benchmarks
+    │   ├── test
+    │   └── types
+    ├── proxy-addr
+    ├── punycode
+    ├── quick-format-unescaped
+    │   └── test
+    ├── readable-stream
+    │   └── lib
+    │       ├── internal
+    │       │   └── streams
+    │       ├── ours
+    │       └── stream
+    ├── real-require
+    │   └── src
+    ├── require-from-string
+    ├── ret
+    │   └── lib
+    ├── reusify
+    │   └── benchmarks
+    ├── rfdc
+    │   └── test
+    ├── safe-regex2
+    │   ├── example
+    │   └── test
+    ├── safe-stable-stringify
+    │   └── esm
+    ├── secure-json-parse
+    │   ├── benchmarks
+    │   ├── test
+    │   └── types
+    ├── semver
+    │   ├── bin
+    │   ├── classes
+    │   ├── functions
+    │   ├── internal
+    │   └── ranges
+    ├── set-cookie-parser
+    │   └── lib
+    ├── sonic-boom
+    │   ├── fixtures
+    │   └── types
+    │       └── tests
+    ├── split2
+    ├── thread-stream
+    │   ├── lib
+    │   └── test
+    │       ├── dir with spaces
+    │       └── ts
+    ├── tiny-lru
+    │   └── dist
+    ├── uri-js
+    │   └── dist
+    │       ├── es5
+    │       └── esnext
+    │           └── schemes
+    └── yallist
+
+249 directories
