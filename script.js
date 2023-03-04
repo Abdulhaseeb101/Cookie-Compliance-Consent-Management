@@ -2,20 +2,13 @@ const cookieContainer = document.querySelector(".cookie-container");
 const cookieButton = document.querySelector(".cookie-btn");
 
 cookieButton.addEventListener("click", async () => {
-  let cookieExpDate = new Date();
-  cookieExpDate.setSeconds(cookieExpDate.getSeconds() + 10); // Setting expiry date
+  // Remove Cookie banner
+  cookieContainer.classList.remove("active");
 
-  let cookieConsentString =
-    "cookieConsentBannerShown=true; SameSite=Lax; expires=" +
-    cookieExpDate.toUTCString();
-
-  document.cookie = cookieConsentString;
-
+  // Preparing request data
   let timestamp = Math.floor(new Date().getTime() / 1000);
   let ip = await getIP();
   let loc = await getLoc(ip);
-
-  setTimeout(() => {}, 8000);
 
   fetch("http://127.0.0.1:3000/api/v1/createcon", {
     method: "POST",
@@ -30,7 +23,15 @@ cookieButton.addEventListener("click", async () => {
     },
   });
 
-  cookieContainer.classList.remove("active");
+  // Setting Cookie values
+  let cookieExpDate = new Date();
+  cookieExpDate.setSeconds(cookieExpDate.getSeconds() + 20); // Setting expiry date
+
+  let cookieConsentString =
+    "cookieConsentBannerShown=true; SameSite=Lax; expires=" +
+    cookieExpDate.toUTCString();
+
+  document.cookie = cookieConsentString;
 });
 
 async function getIP() {
