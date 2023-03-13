@@ -3,7 +3,7 @@ class Consent {
   String timestamp;
   String ipaddr;
   String geoloc;
-  String consentVal;
+  Map<String, dynamic> consentVal;
 
   Consent(
       {required this.id,

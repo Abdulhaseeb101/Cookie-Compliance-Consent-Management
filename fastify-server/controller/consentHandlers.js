@@ -3,13 +3,16 @@ const Consent = require("../models/consent");
 const createConsent = (request, reply) => {
   var _consent = request.body;
 
-  Consent.create(_consent, (err, _) => {
+  Consent.create(_consent, (err, consent) => {
     if (err) {
       reply.send({
         error: err,
       });
     } else {
-      reply.send({ status: "creation success" });
+      reply.send({
+        status: "creation success",
+        consentId: consent.id,
+      });
     }
   });
 };
@@ -55,7 +58,6 @@ const updateConsent = (request, reply) => {
         } else {
           reply.send({ status: "updation success" });
         }
-        cd;
       });
     }
   });
@@ -66,13 +68,17 @@ const deleteConsent = (request, reply) => {
 
   Consent.findById(id, (err, consent) => {
     if (!err) {
-      consent.remove((er) => {
-        if (!er) {
-          reply.send({ consentDeletion: "deletion success" });
-        } else {
-          reply.send({ error: er });
-        }
-      });
+      try {
+        consent.remove((er) => {
+          if (!er) {
+            reply.send({ consentDeletion: "deletion success" });
+          } else {
+            reply.send({ error: er });
+          }
+        });
+      } catch (error) {
+        console.log("Consent doesn't exist");
+      }
     } else {
       reply.send({ error: err });
     }
