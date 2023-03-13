@@ -39,31 +39,34 @@ class _ConsentInfoPageState extends State<ConsentInfoPage> {
                           ),
                           elevation: 20.0,
                           color: Colors.lightBlueAccent,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Consent Id: ${snapshot.data!.id}",
-                                style: const TextStyle(fontSize: 20.0),
-                              ),
-                              Text(
-                                "Consent Timestamp: ${snapshot.data!.timestamp}",
-                                style: const TextStyle(fontSize: 20.0),
-                              ),
-                              Text(
-                                "Host IP address: ${snapshot.data!.ipaddr}",
-                                style: const TextStyle(fontSize: 20.0),
-                              ),
-                              Text(
-                                "Host Lat Long Values: ${snapshot.data!.geoloc}",
-                                style: const TextStyle(fontSize: 20.0),
-                              ),
-                              Text(
-                                "Consent Value: ${snapshot.data!.consentVal}",
-                                style: const TextStyle(fontSize: 20.0),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Consent Id: ${snapshot.data!.id}",
+                                  style: const TextStyle(fontSize: 20.0),
+                                ),
+                                Text(
+                                  "Consent Timestamp: ${snapshot.data!.timestamp}",
+                                  style: const TextStyle(fontSize: 20.0),
+                                ),
+                                Text(
+                                  "Host IP address: ${snapshot.data!.ipaddr}",
+                                  style: const TextStyle(fontSize: 20.0),
+                                ),
+                                Text(
+                                  "Host Lat Long Values: ${snapshot.data!.geoloc}",
+                                  style: const TextStyle(fontSize: 20.0),
+                                ),
+                                Text(
+                                  "Consent Value:\n\t\t\t\t\t|--Enable performance cookies -> ${snapshot.data!.consentVal["perfCookies"]}\n\t\t\t\t\t|--Enable advertising cookies -> ${snapshot.data!.consentVal["adCookies"]}",
+                                  style: const TextStyle(fontSize: 20.0),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

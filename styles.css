@@ -142,3 +142,11 @@ label {
 .toggleLbl {
   color: white;
 }
+
+.cpcButton {
+  visibility: hidden;
+}
+
+.cpcButton.active {
+  visibility: visible;
+}

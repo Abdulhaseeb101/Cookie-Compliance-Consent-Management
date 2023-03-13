@@ -14,6 +14,9 @@ class _ConsentPageState extends State<ConsentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => setState(() {}),
+            icon: Icon(Icons.refresh_outlined)),
         title: const Text("All Consents!!"),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
