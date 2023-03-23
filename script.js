@@ -1,6 +1,6 @@
 const cookieContainer = document.querySelector(".cookie-container");
 const cookieButton = document.querySelector(".cookie-btn");
-const cookieButtonOnlyNec = document.querySelector(".cookie-btn-only-nec");
+const cookieButtonOnlySel = document.querySelector(".cookie-btn-sel");
 const perfToggle = document.getElementById("perfToggle");
 const adToggle = document.getElementById("adToggle");
 const cpcPerfToggle = document.getElementById("cpcPerfToggle");
@@ -60,15 +60,6 @@ cookieButton.addEventListener("click", async () => {
     adCookies: true,
   };
 
-  // Setting preferences
-  if (perfToggle.checked == false) {
-    userConsentSetting.perfCookies = false;
-  }
-
-  if (adToggle.checked == false) {
-    userConsentSetting.adCookies = false;
-  }
-
   // Getting the request body ready
   let timestamp = Math.floor(new Date().getTime() / 1000);
   let ip = await getIP();
@@ -103,15 +94,24 @@ cookieButton.addEventListener("click", async () => {
   document.cookie = cookieConsentString;
 });
 
-cookieButtonOnlyNec.addEventListener("click", async () => {
+cookieButtonOnlySel.addEventListener("click", async () => {
   // Removing consent banner
   cookieContainer.classList.remove("active");
 
   // Initialzing cookie preferences
   let userConsentSetting = {
-    perfCookies: false,
-    adCookies: false,
+    perfCookies: true,
+    adCookies: true,
   };
+
+  // Setting preferences
+  if (perfToggle.checked == false) {
+    userConsentSetting.perfCookies = false;
+  }
+
+  if (adToggle.checked == false) {
+    userConsentSetting.adCookies = false;
+  }
 
   // Getting the request body ready
   let timestamp = Math.floor(new Date().getTime() / 1000);
