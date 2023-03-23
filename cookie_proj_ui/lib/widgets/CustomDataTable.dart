@@ -27,22 +27,28 @@ class _CustomDataTableState extends State<CustomDataTable> {
               DataColumn(label: Text("Consent Id")),
               DataColumn(label: Text("Timestamp")),
               DataColumn(label: Text("Ip Address")),
+              DataColumn(label: Text("More..")),
             ],
             rows: widget.allConsents
                 .map((con) => DataRow(
                       cells: [
-                        DataCell(Text(con.id),
-                            onTap: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ConsentInfoPage(
-                                              consentId: con.id,
-                                            )),
-                                  ).then((value) => setState(() {}))
-                                }),
+                        DataCell(
+                          Text(con.id),
+                        ),
                         DataCell(Text(con.timestamp.toString())),
                         DataCell(Text(con.ipaddr)),
+                        DataCell(IconButton(
+                          icon: const Icon(Icons.menu),
+                          onPressed: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConsentInfoPage(
+                                        consentId: con.id,
+                                      )),
+                            ).then((value) => setState(() {}))
+                          },
+                        )),
                       ],
                     ))
                 .toList(),
