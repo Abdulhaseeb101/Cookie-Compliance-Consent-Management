@@ -3,6 +3,8 @@ import 'package:cookie_proj_ui/ConsentRepository.dart';
 import 'package:cookie_proj_ui/models/Consent.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/CustomDataTable.dart';
+
 class ConsentPage extends StatefulWidget {
   const ConsentPage({super.key});
 
@@ -58,52 +60,5 @@ class _ConsentPageState extends State<ConsentPage> {
         ),
       ),
     );
-  }
-}
-
-class CustomDataTable extends StatefulWidget {
-  final List<Consent> allConsents;
-  const CustomDataTable({
-    super.key,
-    required this.allConsents,
-  });
-
-  @override
-  State<CustomDataTable> createState() => _CustomDataTableState();
-}
-
-class _CustomDataTableState extends State<CustomDataTable> {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        children: [
-          DataTable(
-            columns: const [
-              DataColumn(label: Text("Consent Id")),
-              DataColumn(label: Text("Timestamp")),
-              DataColumn(label: Text("Ip Address")),
-            ],
-            rows: widget.allConsents
-                .map((con) => DataRow(
-                      cells: [
-                        DataCell(Text(con.id),
-                            onTap: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ConsentInfoPage(
-                                              consentId: con.id,
-                                            )),
-                                  ).then((value) => setState(() {}))
-                                }),
-                        DataCell(Text(con.timestamp)),
-                        DataCell(Text(con.ipaddr)),
-                      ],
-                    ))
-                .toList(),
-          ),
-        ]);
   }
 }

@@ -1,6 +1,6 @@
 class Consent {
   String id;
-  String timestamp;
+  DateTime timestamp;
   String ipaddr;
   String geoloc;
   Map<String, dynamic> consentVal;
@@ -14,7 +14,8 @@ class Consent {
 
   factory Consent.fromJson(Map<String, dynamic> json) => Consent(
         id: json["_id"],
-        timestamp: json["timestamp"],
+        timestamp: DateTime.fromMillisecondsSinceEpoch(
+            int.parse(json["timestamp"]) * 1000),
         ipaddr: json["ipaddr"],
         geoloc: json["geoloc"],
         consentVal: json["consentval"],
