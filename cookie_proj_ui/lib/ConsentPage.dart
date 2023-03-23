@@ -1,6 +1,9 @@
 import 'package:cookie_proj_ui/ConsentInfoPage.dart';
 import 'package:cookie_proj_ui/ConsentRepository.dart';
+import 'package:cookie_proj_ui/models/Consent.dart';
 import 'package:flutter/material.dart';
+
+import 'widgets/CustomDataTable.dart';
 
 class ConsentPage extends StatefulWidget {
   const ConsentPage({super.key});
@@ -21,41 +24,40 @@ class _ConsentPageState extends State<ConsentPage> {
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
-      body: Column(
-        children: [
-          FutureBuilder(
-            future: ConsentRepository().getAllConsents(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
-                return ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: const Icon(Icons.perm_identity),
-                      title: Text(snapshot.data![index].id),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ConsentInfoPage(
-                                    consentId: snapshot.data![index].id,
-                                  )),
-                        ).then((value) => setState(() {}));
-                      },
-                    );
-                  },
-                );
-              } else {
-                return const CircularProgressIndicator();
+      body: Center(
+        child: FutureBuilder(
+          future: ConsentRepository().getAllConsents(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
               }
-            },
-          ),
-        ],
+              // return ListView.builder(
+              //   shrinkWrap: true,
+              //   scrollDirection: Axis.vertical,
+              //   itemCount: snapshot.data!.length,
+              //   itemBuilder: (context, index) {
+              //     return ListTile(
+              //       leading: const Icon(Icons.perm_identity),
+              //       title: Text(snapshot.data![index].id),
+              //       onTap: () {
+              //         Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => ConsentInfoPage(
+              //                     consentId: snapshot.data![index].id,
+              //                   )),
+              //         ).then((value) => setState(() {}));
+              //       },
+              //     );
+              //   },
+              // );
+              return CustomDataTable(allConsents: snapshot.data!);
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
       ),
     );
   }
