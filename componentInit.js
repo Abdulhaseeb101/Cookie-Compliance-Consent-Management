@@ -103,11 +103,11 @@ cookieContainer.innerHTML = `
     </div>
 `;
 
-// get the parent element to append the new element to
-const parent = document.querySelector("body");
+// get the body element to append the new element to
+const body = document.querySelector("body");
 
 // append the new element to the parent
-parent.appendChild(cookieContainer);
+body.appendChild(cookieContainer);
 
 //const cookieContainer = document.querySelector(".cookie-container");
 const cookieButton = document.querySelector(".cookie-btn");
@@ -117,4 +117,3 @@ const adToggle = document.getElementById("adToggle");
 const cpcPerfToggle = document.getElementById("cpcPerfToggle");
 const cpcAdToggle = document.getElementById("cpcAdToggle");
 const cpcUpdatePreferences = document.getElementById("cpcUpdatePrefsButton");
-//const cpcButton = document.querySelector(".cpcButton");
