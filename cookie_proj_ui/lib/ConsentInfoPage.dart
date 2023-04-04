@@ -1,6 +1,8 @@
 import 'package:cookie_proj_ui/ConsentRepository.dart';
 import 'package:flutter/material.dart';
 
+import 'ConsentPage.dart';
+
 class ConsentInfoPage extends StatefulWidget {
   final String consentId;
   const ConsentInfoPage({super.key, required this.consentId});
@@ -102,7 +104,11 @@ class _ConsentInfoPageState extends State<ConsentInfoPage> {
                   ),
                   onPressed: () {
                     ConsentRepository().deleteConsent(widget.consentId);
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ConsentPage()),
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

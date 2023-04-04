@@ -19,7 +19,7 @@ class _ConsentPageState extends State<ConsentPage> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () => setState(() {}),
-            icon: Icon(Icons.refresh_outlined)),
+            icon: const Icon(Icons.refresh_outlined)),
         title: const Text("All Consents!!"),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
@@ -32,26 +32,6 @@ class _ConsentPageState extends State<ConsentPage> {
               if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               }
-              // return ListView.builder(
-              //   shrinkWrap: true,
-              //   scrollDirection: Axis.vertical,
-              //   itemCount: snapshot.data!.length,
-              //   itemBuilder: (context, index) {
-              //     return ListTile(
-              //       leading: const Icon(Icons.perm_identity),
-              //       title: Text(snapshot.data![index].id),
-              //       onTap: () {
-              //         Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => ConsentInfoPage(
-              //                     consentId: snapshot.data![index].id,
-              //                   )),
-              //         ).then((value) => setState(() {}));
-              //       },
-              //     );
-              //   },
-              // );
               return CustomDataTable(allConsents: snapshot.data!);
             } else {
               return const CircularProgressIndicator();

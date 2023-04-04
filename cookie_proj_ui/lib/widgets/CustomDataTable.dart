@@ -40,13 +40,13 @@ class _CustomDataTableState extends State<CustomDataTable> {
                         DataCell(IconButton(
                           icon: const Icon(Icons.menu),
                           onPressed: () => {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ConsentInfoPage(
                                         consentId: con.id,
                                       )),
-                            ).then((value) => setState(() {}))
+                            )
                           },
                         )),
                       ],
