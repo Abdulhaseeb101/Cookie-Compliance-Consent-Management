@@ -3,18 +3,18 @@ cpcUpdatePreferences.addEventListener("click", async () => {
   let consentId = getCookie("cookieConsentId");
 
   // Initializing cookie preferences
-  let cpcConsentSettings = {
-    cpcPerfCookies: true,
+  let userConsentSetting = {
+    perfCookies: true,
     adCookies: true,
   };
 
   // Setting preferences
   if (cpcPerfToggle.checked == false) {
-    cpcConsentSettings.cpcPerfCookies = false;
+    userConsentSetting.perfCookies = false;
   }
 
   if (cpcAdToggle.checked == false) {
-    cpcConsentSettings.adCookies = false;
+    userConsentSetting.adCookies = false;
   }
 
   // Getting the request body ready
@@ -31,7 +31,7 @@ cpcUpdatePreferences.addEventListener("click", async () => {
         timestamp: timestamp,
         ipaddr: ip,
         geoloc: loc,
-        consentval: cpcConsentSettings,
+        consentval: userConsentSetting,
       }),
       headers: {
         "Content-Type": "application/json",

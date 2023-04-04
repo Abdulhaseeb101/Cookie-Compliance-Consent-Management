@@ -40,8 +40,8 @@ const getAllConsent = (request, reply) => {
 };
 
 const updateConsent = (request, reply) => {
-  var id = request.params.consentId;
-  var newConsentEdit = request.body;
+  const id = request.params.consentId;
+  const newConsentEdit = request.body;
 
   Consent.findById(id, (err, consent) => {
     if (err) {
